@@ -5,59 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistem Inventaris GrandMax</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Menghilangkan scrollbar pada body agar tampilan bersih */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        .iframe-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        /* Loading animation */
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3498db;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-900 flex items-center justify-center h-screen">
 
-    <div id="loading-screen" class="flex flex-col items-center justify-center h-screen w-full bg-white z-50 absolute">
-        <div class="loader mb-4"></div>
-        <p class="text-gray-600 font-medium animate-pulse">Menghubungkan ke Database...</p>
+    <div class="max-w-sm w-full bg-white p-8 border border-gray-200 rounded-lg shadow-xl text-center">
+        <div class="mb-6">
+            <div class="bg-blue-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto">
+                <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Inventaris GrandMax</h1>
+        <p class="text-gray-500 mb-8">Silakan masuk dengan akun Google kantor untuk melanjutkan.</p>
+
+        <button onclick="masukKeApp()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
+            Masuk ke Aplikasi
+        </button>
+        
+        <p class="mt-6 text-xs text-gray-400 font-mono">auth.grandmax-corp.pages.dev</p>
     </div>
 
-    <iframe 
-        id="app-frame"
-        src="https://script.google.com/macros/s/AKfycbzQYAQBzvEI9aEmj2R44of9-vl4PjahVLxgtwf3ZFJ6vYiwr6H6dYQm43FIWzUMALGP/exec" 
-        class="iframe-container"
-        allow="geolocation; microphone; camera"
-        onload="hideLoading()">
-    </iframe>
-
     <script>
-        function hideLoading() {
-            // Sembunyikan layar loading setelah iframe selesai dimuat
-            const loadingScreen = document.getElementById('loading-screen');
-            loadingScreen.style.display = 'none';
+        function masukKeApp() {
+            // URL GAS Anda yang di-set "Execute as User"
+            const gasUrl = "https://script.google.com/macros/s/AKfycbzQYAQBzvEI9aEmj2R44of9-vl4PjahVLxgtwf3ZFJ6vYiwr6H6dYQm43FIWzUMALGP/exec";
+            
+            // Redirect langsung (keluar dari Cloudflare menuju Google)
+            window.location.href = gasUrl;
         }
     </script>
 </body>
